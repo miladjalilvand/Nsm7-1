@@ -18,6 +18,8 @@
                                         <flux:sidebar.item icon="home" :href="route('sample')" :current="request()->routeIs('sample')" wire:navigate>
                         {{ __('Sample') }}
                     </flux:sidebar.item>
+
+                    <livewire:component.menus />
                     
                 </flux:sidebar.group>
             </flux:sidebar.nav>

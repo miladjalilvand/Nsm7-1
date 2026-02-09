@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     //
-     protected $fillable = ["visible" , "caption" ,"menu_type_id"];
+     protected $fillable = ["visible" , "caption" ,"menu_type_id", "slug"];
     protected $table = "menus"; 
 
     public function MenuType () {

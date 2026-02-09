@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('faqs', function (Blueprint $table) {
-            $table->id();  
-            $table->foreignId('category_id');
-            $table->string('title');
-            $table->text('content');
-            $table->timestamps();
+        Schema::table('menus', function (Blueprint $table) {
+            //
+            $table->string('slug')->after('caption');
         });
     }
 
@@ -25,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('faqs');
+        Schema::table('menus', function (Blueprint $table) {
+            //
+        });
     }
 };

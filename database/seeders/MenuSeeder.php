@@ -15,10 +15,10 @@ class MenuSeeder extends Seeder
     {
         //
                 $menus_seed = [
-            ["caption" => "menu" , "visible" => 1 , "menu_type_id" => 1] ,
-            ["caption" => "menu2" , "visible" => 1 ,"menu_type_id"  => 1 ] ,
-            ["caption" => "menu3" , "visible" => 1 ,"menu_type_id"  => 1 ] ,
-            ["caption" => "menu4" , "visible" => 1 ,"menu_type_id"  => 1 ] ,
+            ["caption" => "menu" , "visible" => 1 , "menu_type_id" => 26 ,"slug" => "menu_type1" ,] ,
+            ["caption" => "menu2" , "visible" => 1 ,"menu_type_id"  => 29,"slug" => "menu_type2" , ] ,
+            ["caption" => "menu3" , "visible" => 1 ,"menu_type_id"  => 30 ,"slug" => "menu_type3" ,] ,
+            ["caption" => "menu4" , "visible" => 1 ,"menu_type_id"  => 27 ,"slug" => "menu_type4" ,] ,
             ];
 
 

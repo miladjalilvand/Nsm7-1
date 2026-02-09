@@ -11,6 +11,6 @@ class MenuType extends Model
     protected $table = "menu_types"; 
 
     public function menus () {
-        return $this->hasMany(Menu::class);
+        return $this->hasMany(Menu::class , 'menu_type_id');
     }
 }

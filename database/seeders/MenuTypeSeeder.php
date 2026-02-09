@@ -16,7 +16,7 @@ class MenuTypeSeeder extends Seeder
               $menu_types_seed = [
             ["caption" => "menu_type" , "visible" => 1 ] ,
             ["caption" => "menu_type2" , "visible" => 1 ] ,
-            ["caption" => "menu_type3" , "visible" => 1 ] ,
+            ["caption" => "menu_type3" , "visible" => 1  ] ,
             ["caption" => "menu_type4" , "visible" => 1 ] ,
             ];
 
