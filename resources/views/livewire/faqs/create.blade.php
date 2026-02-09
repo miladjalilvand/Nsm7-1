@@ -19,6 +19,9 @@
                 wire:model="category_id"
                 :error="$errors->first('category_id')"
             >
+            <flux:select.option value="">
+                       
+                    </flux:select.option>
                 @forelse($categories ?? [] as $category)
                     <flux:select.option value="{{ $category->id }}">
                         {{ $category->id }}
