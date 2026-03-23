@@ -53,7 +53,7 @@
 
             {{-- Actions --}}
             <div class="flex justify-between items-center pt-4">
-                <flux:link href="{{ route('menu_type1') }}" variant="ghost">
+                <flux:link href="{{ route('menu_type1') }}" variant="ghost" wire:navigate>
                     بازگشت
                 </flux:link>
 

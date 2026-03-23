@@ -34,7 +34,8 @@ class Create extends Component
         //     'content'  => $this->content,
         // ]);
 
-        Flux::toast('Your changes have been saved.');
+        // Flux::toast('Your changes have been saved.');
+        return redirect()->route('menu_type1');
     }
 
     public function mount ()

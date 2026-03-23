@@ -25,3 +25,4 @@ Route::view('dashboard', view: 'dashboard')
 
 
 require __DIR__.'/settings.php';
+
