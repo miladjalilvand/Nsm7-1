@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('employee_services', function (Blueprint $table) {
             $table->id();
-            $table->string('caption');
-            $table->string('icon');
-            $table->integer('visible')->default(0);
-            $table->foreignId('menu_type_id');
+            $table->foreignId('employee_id');
+            $table->foreignId('service_id');
+            $table->integer('is_active')->default(1);
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('employee_services');
     }
 };

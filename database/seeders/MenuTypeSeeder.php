@@ -14,16 +14,16 @@ class MenuTypeSeeder extends Seeder
     {
         //
               $menu_types_seed = [
-            ["caption" => "menu_type" , "visible" => 1 ] ,
-            ["caption" => "menu_type2" , "visible" => 1 ] ,
-            ["caption" => "menu_type3" , "visible" => 1  ] ,
-            ["caption" => "menu_type4" , "visible" => 1 ] ,
+            ["id"=>1,"caption" => "نوبت ها ", "visible" => 1 ,'icon' => 'home'] ,
+            ["id"=>2,"caption" => "اطلاعات پایه" , "visible" => 1 ,'icon' => 'home'] ,
+            // ["id"=>3,"caption" => "menu_type3" , "visible" => 1  ] ,
+            // ["id"=>1,"caption" => "menu_type4" , "visible" => 1 ] ,
             ];
 
 
             foreach ($menu_types_seed as $menu_type) {
                 
-                $already_menu_type = MenuType::where("caption", $menu_type["caption"])->first();
+                $already_menu_type = MenuType::where("id", $menu_type["id"])->first();
                 if($already_menu_type){
                     $already_menu_type->delete();
                 }

@@ -14,10 +14,10 @@ class CategorySeeder extends Seeder
     {
         //
         $categories_seed = [
-            ["caption" => "category_item_1" , "is_active" => 1 ] ,
-            ["caption" => "category_item_2" , "is_active" => 1 ] ,
-            ["caption" => "category_item_3" , "is_active" => 1 ] ,
-            ["caption" => "category_item_4" , "is_active" => 1 ] ,
+            ["caption" => "category_item_1" , "is_active" => true ] ,
+            ["caption" => "category_item_2" , "is_active" => true ] ,
+            ["caption" => "category_item_3" , "is_active" => true ] ,
+            ["caption" => "category_item_4" , "is_active" => true ] ,
             ];
 
 

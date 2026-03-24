@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('caption');
             $table->integer('visible')->default(0);
+            $table->string('icon');
             
             $table->timestamps();
         });

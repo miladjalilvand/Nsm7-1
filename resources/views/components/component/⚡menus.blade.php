@@ -21,15 +21,19 @@ public function mount()
 
 
 @foreach($menuTypes as $menuType)
-    <div class="mb-2 font-bold">
+    <span class=" font-semibold">
         {{ $menuType->caption }}
-    </div>
+</sapn>
+
 
     @foreach($menuType->menus as $menu)
         <flux:sidebar.item
-            :href="url('/'.$menu->slug)"
+       
+            :href="route($menu->slug.'.index')"
+
             :current="request()->is('/'.$menu->slug)"
             wire:navigate
+            icon="{{$menu->icon}}"
         >
             {{ $menu->caption }}
         </flux:sidebar.item>
@@ -37,3 +41,5 @@ public function mount()
 @endforeach
 
 </div>
+
+<!-- :href="url('/'.$menu->slug)"  -->

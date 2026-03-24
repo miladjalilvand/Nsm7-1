@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('caption');
-            $table->string('icon');
-            $table->integer('visible')->default(0);
-            $table->foreignId('menu_type_id');
+            $table->foreignId('user_id');
+            $table->foreignId('branch_id');
+            $table->string('reff');
+            $table->integer('amount');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('payments');
     }
 };
