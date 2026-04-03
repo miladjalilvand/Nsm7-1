@@ -1,3 +1,5 @@
 <div>
-    {{-- You must be the change you wish to see in the world. - Mahatma Gandhi --}}
+    <livewire:component.back_to_index />
+      @include('livewire.branches._view')
+
 </div>

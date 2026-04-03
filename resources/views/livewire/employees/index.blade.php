@@ -1,3 +1,9 @@
 <div>
-    {{-- Let all your things have their places; let each part of your business have its time. - Benjamin Franklin --}}
+
+    <livewire:branch_switcher />
+
+<livewire:component.create_button_section />
+{{$employees->count()}}
+
+
 </div>

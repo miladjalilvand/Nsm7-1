@@ -1,3 +1,4 @@
 <div>
-    {{-- The only way to do great work is to love what you do. - Steve Jobs --}}
+    <livewire:component.back_to_index />
+
 </div>

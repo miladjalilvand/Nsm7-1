@@ -37,7 +37,7 @@ Route::view(uri: 'sample', view: 'sample')
     group(function(){
             Route::get('index' , branch_index::class)->name('index');
             Route::get('create' , branch_create::class)->name('create');
-            Route::get('edit' , branch_edit::class)->name('edit');
+            Route::get('edit/{branch}' , branch_edit::class)->name('edit');
     });
         Route::prefix('categories/')->name('categories.')->
     group(function(){

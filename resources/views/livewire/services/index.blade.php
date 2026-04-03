@@ -1,3 +1,7 @@
 <div>
-    {{-- It is quality rather than quantity that matters. - Lucius Annaeus Seneca --}}
+
+    <livewire:branch_switcher />
+
+    <livewire:component.create_button_section />
+{{$services->count()}}
 </div>

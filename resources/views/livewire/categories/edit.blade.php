@@ -1,3 +1,4 @@
 <div>
-    {{-- We must ship. - Taylor Otwell --}}
+    <livewire:component.back_to_index />
+
 </div>

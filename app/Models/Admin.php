@@ -23,6 +23,11 @@ class Admin extends Model
         return $this->belongsTo(Panel::class);
     }
 
+
+    
+
+
+
     // public function user ()
     // {
     //     return $this->belongsTo(User::class);

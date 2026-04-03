@@ -1,4 +1,4 @@
 <div>
-    cirieate
-    {{-- Act only according to that maxim whereby you can, at the same time, will that it should become a universal law. - Immanuel Kant --}}
+    <livewire:component.back_to_index />
+    @include('livewire.branches._view'  )
 </div>

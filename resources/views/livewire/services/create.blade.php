@@ -1,3 +1,3 @@
 <div>
-    {{-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama --}}
+    <livewire:component.back_to_index />
 </div>

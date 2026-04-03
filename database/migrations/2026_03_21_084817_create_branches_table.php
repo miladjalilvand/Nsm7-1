@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('mobile');
             $table->string('address');
             $table->string('location');
-            $table->json('working_times');
+            $table->string('working_times');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

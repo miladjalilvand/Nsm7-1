@@ -9,5 +9,11 @@ class Panel extends Model
     //
     protected $table = 'panels' ; 
 
-    protected $fillable = ['website' , 'expired_date' , 'user_id'];
+    protected $fillable = ['id','website' , 'expired_date' , 'user_id'];
+
+    public function branches ()
+    {
+        return $this->hasMany(Branch::class);
+    }
+    
 }

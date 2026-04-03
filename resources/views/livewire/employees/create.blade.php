@@ -1,3 +1,3 @@
 <div>
-    {{-- Simplicity is an acquired taste. - Katharine Gerould --}}
+    <livewire:component.back_to_index />
 </div>

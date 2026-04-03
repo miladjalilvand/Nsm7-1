@@ -64,3 +64,10 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+    @media screen and (min-width: 720px) {
+      .form_card {
+        margin: 45px 42px 0px 150px;
+      }
+
+    }

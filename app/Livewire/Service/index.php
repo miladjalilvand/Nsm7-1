@@ -8,7 +8,13 @@ use Livewire\Component;
 
  class Index extends Component
 {
+    public $services ; 
+
     //
+
+    public function mount(){
+        $this->services = current_branch()->services;
+    }
         public function render()
     {
         return view("livewire.services.index");
