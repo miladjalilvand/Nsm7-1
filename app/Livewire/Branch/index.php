@@ -2,7 +2,9 @@
 namespace App\Livewire\Branch;
 
 use App\Models\Admin;
+use App\Models\Branch;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -14,9 +16,12 @@ use Livewire\Component;
     //
     public $branches ;
 
+    public $showModal ;
+
+    public $caption ,$phone , $mobile , $address , $location , $working_times ;
 
 
-    // #[On('branch-created')]
+    #[On('branch-created')]
     public function refresh(){
         //   dd('refresh called');
 
@@ -37,4 +42,27 @@ use Livewire\Component;
     {
         return view("livewire.branches.index");
     }
+
+    public function store()
+    {
+        $user = Auth::user();
+               Branch::create([
+            'caption'=> $this->caption , 
+           'phone'=> $this->phone , 
+            'mobile'=>$this->mobile , 
+           'location'=> $this->location , 
+           'address'=> $this->address ,
+          'working_times'=>  $this->working_times, 
+          'panel_id' => panelID($user)
+        ]);
+
+
+        $this->showModal = false ; 
+                $this->dispatch('branch-created');
+        // $this->reset();
+
+
+        // $this->dispatch('delete-user-button');
+    }
+    
 };

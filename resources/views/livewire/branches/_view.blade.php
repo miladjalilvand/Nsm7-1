@@ -69,9 +69,6 @@
                 <flux:button type="submit" variant="primary">
                     ذخیره 
                 </flux:button>
-                <flux:button wire:click="store" variant="primary">
-                    as 
-                </flux:button>
 
                 
 
