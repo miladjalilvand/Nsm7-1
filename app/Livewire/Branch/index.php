@@ -21,7 +21,7 @@ use Livewire\Component;
     public $caption ,$phone , $mobile , $address , $location , $working_times ;
 
 
-    #[On('branch-created')]
+    // #[On('branch-created')]
     public function refresh(){
         //   dd('refresh called');
 
@@ -56,9 +56,10 @@ use Livewire\Component;
           'panel_id' => panelID($user)
         ]);
 
-
+      $user = Auth::user();
+        $this->branches = $user->admin->panel->branches;
         $this->showModal = false ; 
-                $this->dispatch('branch-created');
+                // $this->dispatch('branch-created');
         // $this->reset();
 
 

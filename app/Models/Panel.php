@@ -15,5 +15,15 @@ class Panel extends Model
     {
         return $this->hasMany(Branch::class);
     }
+
+    public function admins ()
+    {
+        return $this->hasMany(Admin::class);
+    }
+
+    public function options ()
+    {
+        return $this->hasMany(Admin::class);
+    }
     
 }

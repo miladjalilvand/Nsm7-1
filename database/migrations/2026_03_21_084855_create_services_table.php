@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('branch_id');
             $table->foreignId('category_id');
-            $table->foreignId('status_id');
             $table->string('caption');
             $table->integer('time');
             $table->integer('discount')->default(0);

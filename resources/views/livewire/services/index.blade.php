@@ -4,17 +4,39 @@
 
     <livewire:component.create_button_section />
 {{$services->count()}}
-       <flux:modal name="services" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
+       <flux:modal name="services" :show="$errors->isNotEmpty()" focusable class="max-w-lg"
+        wire:model="showModal"
+       >
                    <form wire:submit="store" 
-            class="form_card"
+           
             >
 {{-- ... --}}
-{{-- فرض می‌کنیم این کد داخل یک تگ <form wire:submit.prevent="store"> قرار می‌گیرد --}}
 
 {{-- فیلد caption (که قبلاً داشتید و درست است) --}}
+
+ <flux:select
+                label="دسته‌بندی"
+                placeholder="انتخاب دسته"
+                wire:model="category_id"
+                :error="$errors->first('category_id')"
+            >
+            <flux:select.option value="">
+                       
+                    </flux:select.option>
+                @forelse($categories ?? [] as $category)
+                    <flux:select.option value="{{ $category->id }}">
+                        {{ $category->caption }}
+                    </flux:select.option>
+                @empty
+                    <flux:select.option disabled value="">
+                        هیچ دسته‌ای یافت نشد
+                    </flux:select.option>
+                @endforelse
+            </flux:select>
+
 <flux:input
     label="عنوان"
-    placeholder="کپشن را وارد کنید"
+    placeholder="عنوان را وارد کنید"
     type="text"
     wire:model="caption"
     :error="$errors->first('caption')"
@@ -22,49 +44,33 @@
 
 {{-- فیلد phone --}}
 <flux:input
-    label="تلفن"
-    placeholder="شماره تلفن را وارد کنید"
-    type="tel" {{-- type="tel" برای شماره تلفن مناسب‌تر است --}}
-    wire:model="phone"
-    :error="$errors->first('phone')"
+    label="زمان"
+
+    placeholder="زمان را وارد کنید"
+    type="number"
+    wire:model="time"
+    :error="$errors->first('address')"
 />
 
 {{-- فیلد mobile --}}
 <flux:input
-    label="موبایل"
-    placeholder="شماره موبایل را وارد کنید"
-    type="tel" {{-- type="tel" یا type="text" --}}
-    wire:model="mobile"
-    :error="$errors->first('mobile')"
+    label="مبلغ"
+
+    placeholder="مبلغ را وارد کنید"
+    type="number"
+    wire:model="cost"
+    :error="$errors->first('cost')"
 />
 
 {{-- فیلد address --}}
 <flux:input
-    label="آدرس"
-    placeholder="آدرس کامل را وارد کنید"
+    label="توضیحات"
+    placeholder=" توضیحات را وارد کنید"
     type="text"
-    wire:model="address"
-    :error="$errors->first('address')"
+    wire:model="description"
+    :error="$errors->first('description')"
 />
 
-{{-- فیلد location --}}
-<flux:input
-    label="موقعیت مکانی (مثال: طول و عرض جغرافیایی)"
-    placeholder="مثال: 35.6892, 51.3890"
-    type="text" {{-- یا type="text" --}}
-    wire:model="location"
-    :error="$errors->first('location')"
-/>
-
-{{-- فیلد working_times --}}
-{{-- برای زمان‌های کاری، بسته به پیچیدگی، ممکن است نیاز به یک کامپوننت سفارشی‌تر یا textarea باشد --}}
-<flux:input
-    label="ساعات کاری"
-    placeholder="مثال: شنبه تا چهارشنبه: 8:00 - 17:00"
-    type="text" {{-- یا type="textarea" اگر کامپوننت flux:input از آن پشتیبانی کند --}}
-    wire:model="working_times"
-    :error="$errors->first('working_times')"
-/>
 
 {{-- دکمه ارسال --}}
 
@@ -77,15 +83,7 @@
                 </flux:button>
 
                 
-            <div class="flex justify-end space-x-2 rtl:space-x-reverse">
-                <flux:modal.close>
-                    <flux:button variant="filled">{{ __('Cancel') }}</flux:button>
-                </flux:modal.close>
 
-                <flux:button variant="danger" type="submit" data-test="confirm-delete-user-button">
-                    {{ __('Delete account') }}
-                </flux:button>
-            </div>
             </form>
 
     

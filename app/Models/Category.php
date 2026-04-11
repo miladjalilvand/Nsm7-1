@@ -8,7 +8,7 @@ class Category extends Model
 {
     //
     protected $table = 'categories';
-    protected $filleble = [
+    protected $fillable = [
         'branch_id' ,
         'caption' , 'is_active'
     ];

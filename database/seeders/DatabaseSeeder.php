@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\MenuType;
 use App\Models\Panel;
 use App\Models\Role;
+use App\Models\Status;
 use App\Models\User;
 use Carbon\Carbon;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -70,6 +71,24 @@ class DatabaseSeeder extends Seeder
             'user_id' => userAUTH()->id,
             'password' => '1234'
         ]);
+
+
+        $statuses = [
+            ['id' => 1 , 
+            'caption' => ' درحال بررسی نوبت'], 
+            ['id' => 2 , 
+            'caption' => 'نوبت ثبت و تایید شده '],
+                      
+        ];
+
+        foreach($statuses as $status){
+            Status::updateOrCreate([
+                'id' => $status['id'] , 
+                'caption' => $status['caption']
+            ]);
+        }
+
+        
 
 
     }

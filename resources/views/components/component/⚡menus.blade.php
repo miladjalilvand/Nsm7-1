@@ -1,7 +1,8 @@
 <?php
 
-
+use App\Models\Branch;
 use App\Models\MenuType;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 new class extends Component
@@ -9,9 +10,18 @@ new class extends Component
     //
     public $menus , $menuTypes ;
 
-public function mount()
+    public $show_menu ;
+
+  
+
+ public  $branchesCount ; 
+ public function mount()
 {
     $this->menuTypes = MenuType::with('menus')->get();
+
+    $this->branchesCount = Branch::count();
+
+    $this->show_menu = app('show-menu-all');
 }
 
 };
@@ -19,7 +29,7 @@ public function mount()
 
 <div>
 
-
+{{$show_menu ? 'true' : 'false'}}
 @foreach($menuTypes as $menuType)
     <span class=" font-semibold">
         {{ $menuType->caption }}
@@ -27,6 +37,7 @@ public function mount()
 
 
     @foreach($menuType->menus as $menu)
+    @if($menu->slug == 'branches' || $branchesCount)
         <flux:sidebar.item
        
             :href="route($menu->slug.'.index')"
@@ -37,7 +48,9 @@ public function mount()
         >
             {{ $menu->caption }}
         </flux:sidebar.item>
+        @endif
     @endforeach
+
 @endforeach
 
 </div>

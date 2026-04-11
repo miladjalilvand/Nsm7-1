@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('reserves', function (Blueprint $table) {
             $table->id();
             $table->foreignId('branch_id');
+            $table->foreignId('status_id');
             $table->foreignId('customer_id');
             $table->date('date');
             $table->time('time');

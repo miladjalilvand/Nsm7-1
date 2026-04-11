@@ -15,6 +15,32 @@ class Reserve extends Model
         'time' ,
         'date' , 
         'customer_id' , 
-        'branch_id'
+        'branch_id' , 
+        'status_id'
     ];
+
+
+    public function scopePendingReseerves(){
+
+    }
+
+    public function scopeSubmittedReseerves(){
+        
+    }
+    public function scopeFutureReseerves(){
+        
+    }
+    public function scopePastReseerves(){
+        
+    }
+    public function scopeTodayReseerves(){
+        
+    }
+    public function scopeUserReseerves(){
+        
+    }
+
+    public function changeStatus(){
+        
+    }
 }

@@ -85,3 +85,14 @@ if(!function_exists('set_current_branch')){
     }
 
 }
+
+if(!function_exists('farsi_week_days')){
+
+    function farsi_week_days(){
+        return [
+            'شنبه' ,
+            'یکشنبه','دوشنبه','سه شنبه','چهارشنبه','پنج شنبه','جمعه'
+            
+        ];
+    } 
+}

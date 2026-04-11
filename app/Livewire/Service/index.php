@@ -1,7 +1,9 @@
 <?php
 namespace App\Livewire\Service;
 
+use App\Models\Service;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
@@ -9,14 +11,64 @@ use Livewire\Component;
  class Index extends Component
 {
     public $services ; 
+    public $categories;
+
+    public $description;
+    public $cost;
+    public $time;
+    public $caption;
+    public $category_id;
+    public $branch_id;
+
+
+    public $showModal ;
 
     //
 
+    
+    #[On(['branch-switched'])]
+    public function refresh(){
+ $branch = current_branch()->fresh(); // این لازم است
+
+    $this->services = $branch->services()->orderBy('id', 'desc')->get();
+    $this->categories = $branch->categories()->get();
+    $this->branch_id = $branch->id;
+
+     
+    
+    }
     public function mount(){
         $this->services = current_branch()->services;
+        $this->categories = current_branch()->categories;
+        $this->branch_id = current_branch()->id;
+
     }
-        public function render()
+    public function render()
     {
         return view("livewire.services.index");
     }
+
+    public function store(){
+        Service::create([
+        'description' =>$this->description,
+        'cost' =>$this->cost, 
+        'time' =>$this->time ,
+        'caption' =>$this->caption,
+        'category_id'=>$this->category_id ,
+        'branch_id' =>$this->branch_id,    
+        ]);
+ $branch = current_branch()->fresh(); // این لازم است
+
+            $this->services = $branch->services()->orderBy('id', 'desc')->get();
+    $this->categories = $branch->categories()->get();
+    $this->branch_id = $branch->id;
+        $this->showModal = false ; 
+
+
+        // $this->dispatch('new-service');
+    }
+
+    
+
+
 };

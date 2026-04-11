@@ -16,6 +16,8 @@ class MenuTypeSeeder extends Seeder
               $menu_types_seed = [
             ["id"=>1,"caption" => "نوبت ها ", "visible" => 1 ,'icon' => 'home'] ,
             ["id"=>2,"caption" => "اطلاعات پایه" , "visible" => 1 ,'icon' => 'home'] ,
+            ["id"=>3,"caption" => " باشگاه مشتریان" , "visible" => 1 ,'icon' => 'home'] ,
+
             // ["id"=>3,"caption" => "menu_type3" , "visible" => 1  ] ,
             // ["id"=>1,"caption" => "menu_type4" , "visible" => 1 ] ,
             ];

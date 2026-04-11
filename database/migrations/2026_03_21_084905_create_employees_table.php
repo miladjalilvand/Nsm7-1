@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->foreignId('branch_id');
-            $table->foreignId('status_id');
+            // $table->foreignId('status_id');  //remove
             $table->string('name');
             $table->string('caption');
             $table->json('working_times'); //weekday , start_time , end_time

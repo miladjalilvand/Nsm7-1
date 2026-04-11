@@ -1,6 +1,8 @@
 <?php
 namespace App\Livewire\Category;
 
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -12,14 +14,48 @@ use Livewire\Component;
     
     public $categories ;
 
-    #[On('branch-switched')]
-    public function mount(){
+    public $current_branch ;
+
+    public $caption ;
+    public $showModal ;
+    
+    #[On(['branch-switched'])]
+    public function refresh(){
+        //   dd('refresh called');
+
+              $this->current_branch = current_branch()->fresh(); // IMPORTANT
+
 
         $this->categories = 
-        current_branch()->categories;
+        $this->current_branch->categories;    }
+    public function mount(){
+        $this->current_branch =  current_branch();
+        $this->categories = 
+        $this->current_branch->categories;
     }
         public function render()
     {
         return view("livewire.categories.index");
+    }
+
+    public function store(){
+        
+
+        Category::create([
+        'branch_id'=>$this->current_branch->id ,
+        'caption' => $this->caption , 
+        
+        ]);
+
+        
+              $this->current_branch = current_branch()->fresh(); // IMPORTANT
+
+
+        $this->categories = 
+        $this->current_branch->categories;
+        $this->showModal = false ; 
+
+        // $this->dispatch('category-created');
+
     }
 };

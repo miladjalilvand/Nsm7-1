@@ -20,6 +20,9 @@ class MenuSeeder extends Seeder
             ["caption" => "دسنه بندی",'icon' => 'home' , "visible" => 1 ,"menu_type_id"  => 2 ,"slug" => "categories" ,] ,
             ["caption" => "سرویس ها" ,'icon' => 'home', "visible" => 1 ,"menu_type_id"  => 2 ,"slug" => "services" ,] ,
             ["caption" => " کارمندان" ,'icon' => 'home', "visible" => 1 ,"menu_type_id"  => 2 ,"slug" => "employees" ,] ,
+             ["caption" => " وب سایت" ,'icon' => 'home', "visible" => 1 ,"menu_type_id"  => 3 ,"slug" => "services" ,] ,
+            ["caption" => " مشتریان" ,'icon' => 'home', "visible" => 1 ,"menu_type_id"  => 3 ,"slug" => "employees" ,] ,
+             ["caption" => "پرداخت  ها" ,'icon' => 'home', "visible" => 1 ,"menu_type_id"  => 3 ,"slug" => "services" ,] ,
 
             ];
 
