@@ -18,6 +18,11 @@ use Livewire\Component;
 
     public $caption ;
     public $showModal ;
+
+
+    public $current_category;
+    public $edit_mode = false;
+
     
     #[On(['branch-switched'])]
     public function refresh(){
@@ -39,13 +44,22 @@ use Livewire\Component;
     }
 
     public function store(){
+
         
 
+        if(!$this->edit_mode){
         Category::create([
         'branch_id'=>$this->current_branch->id ,
         'caption' => $this->caption , 
         
-        ]);
+        ]);}
+        else {
+           
+            $this->current_category->update([
+                        'branch_id'=>$this->current_branch->id ,
+        'caption' => $this->caption , 
+            ]);
+        }
 
         
               $this->current_branch = current_branch()->fresh(); // IMPORTANT
@@ -58,4 +72,16 @@ use Livewire\Component;
         // $this->dispatch('category-created');
 
     }
+
+
+    public function show_edit($category){
+      $this->edit_mode = true ;
+      $this->showModal = true;
+
+$this->current_category =Category::find($category['id']);
+
+      $this->caption= $category['caption'];
+
+    }
+    
 };

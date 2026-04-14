@@ -3,7 +3,18 @@
     <livewire:branch_switcher />
 
     <livewire:component.create_button_section />
+
+
+
 {{$services->count()}}
+
+
+
+
+
+
+
+
        <flux:modal name="services" :show="$errors->isNotEmpty()" focusable class="max-w-lg"
         wire:model="showModal"
        >
@@ -88,4 +99,42 @@
 
     
     </flux:modal>
+
+    @foreach($services as $service)
+<div class="flex flex-col">
+    <div class="flex flex-col m-1 p-3">
+
+    <div>         <span>
+          عنوان:  {{$service->caption}}
+        </span><br/>
+        <span>
+          دسته‌بندی:  {{$service->category->caption}}
+        </span><br/>
+         <span>
+          زمان:  {{$service->time}}
+        </span><br/>
+         <span>
+          مبلغ:  {{$service->cost}}
+        </span><br/>
+
+         <span>
+          توضیحات:  {{$service->description}}
+        </span><br/>
+    </div>
+                    <div class="text-left">
+ <flux:modal.trigger name="services">
+        <flux:button variant="primary"
+        wire:click="show_edit({{$service}})" >
+         
+           
+                ویرایش
+            
+        </flux:button>
+    </flux:modal.trigger>
+
+</div>
+</div>
+</div>
+
+@endforeach
 </div>

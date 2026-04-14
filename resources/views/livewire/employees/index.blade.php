@@ -3,12 +3,25 @@
     <livewire:branch_switcher />
 
 <livewire:component.create_button_section />
-{{$employees->count()}}q
+
 
 @foreach($employees as $item_employee)
-{{$item_employee->name}}<br/>
 
-{{$item_employee->employee_services}}<br/>
+  <div class="flex flex-col">
+    <div class="flex flex-col m-1 p-3">
+
+<span>نام : {{$item_employee->name}}</span><br/>
+
+<div>
+<span>سرویس ها </span><br/>
+
+    @foreach($item_employee->services as $item_service_employee)
+{{$item_service_employee->caption}}</br>
+@endforeach
+</div>
+  
+</div>
+</div>
 <flux:button 
     wire:click="add_service({{ $item_employee->id }})"
     wire:loading.attr="disabled"
@@ -16,19 +29,31 @@
 >
     افزودن سرویس
 </flux:button>
-
+                     
+<div class="text-left">
+ <flux:modal.trigger name="employees">
+        <flux:button variant="primary"
+        wire:click="show_edit({{$item_employee}})" >
+         
+           
+                ویرایش
+            
+        </flux:button>
+    </flux:modal.trigger>
+</div>
 <flux:modal
 
 :show="$errors->isNotEmpty()" focusable class="max-w-lg"
  wire:model="showModalAddService" 
 >
-{{$selected_employee_id}}<br/>
+
+
 @foreach($services as $services_item)
 
 <flux:button
 wire:click="add_service_to_employee({{ $services_item->id }})"
 >
- <span class="{{in_array($services_item->id , $employe_service_ids) ? 'text-gray-200':'text-gray-800'}}">
+ <span class="{{in_array($services_item->id , $employe_service_ids) ? 'text-green-500':'text-red-800'}}">
     {{$services_item->caption}}
 
 </span>
@@ -36,11 +61,12 @@ wire:click="add_service_to_employee({{ $services_item->id }})"
 
 </flux:button>
 @endforeach
-<p>Selected Service IDs: {{ json_encode($employe_service_ids) }}</p>
+
+<br/>
 <flux:button
-wire:click="store_employe_service({{$services_item->id}} , {{ $item_employee->id}})"
+wire:click="store_employe_service()"
 >
-افزودن</flux:button>
+ذخیره تغیرات</flux:button>
 
 </flux:modal>
 @endforeach

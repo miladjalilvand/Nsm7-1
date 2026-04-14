@@ -35,15 +35,23 @@ use Livewire\Component;
         public $employe_service_ids=[]; 
 
         public $selected_employee_id ;
+
+        public $edit_mode = false; 
+
+        public $current_employee ;
         
 
         #[On('branch-switched')]
         public function refresh(){
             $branch =  current_branch()->fresh();
 
-                    $this->employees = 
+            $this->employees = 
         $branch->employees;
-        $this->showModal= false;    
+
+        $this->services = $branch->services;
+        $this->service_ids = $branch->services->pluck('id')->
+        toArray()??[];
+ 
 
         }
     public function mount(){
@@ -63,14 +71,24 @@ use Livewire\Component;
     }
 
     public function store(){
-
         $branch_id = current_branch()->id;
+
+        if(!$this->edit_mode){
+
         Employee::create([
             'name' => $this->name,
             'caption' => $this->caption,
             'working_times' => json_encode($this->working_times) , 
             'branch_id' => $branch_id 
-        ]);
+        ]);}
+        else {
+            $this->current_employee->update([
+            'name' => $this->name,
+            'caption' => $this->caption,
+            'working_times' => json_encode($this->working_times) , 
+            'branch_id' => $branch_id 
+            ]);
+        }
 
         $this->refresh();
 
@@ -144,7 +162,7 @@ use Livewire\Component;
         }
     }
 
-    public function store_employe_service($services_item_id ,  $item_employee_id){
+    public function store_employe_service(){
 
        
         EmployeeService::where('employee_id' , $this->selected_employee_id)
@@ -163,5 +181,18 @@ use Livewire\Component;
         $this->reset('employe_service_ids');
     }
 
+            public function show_edit($employee){
+      $this->edit_mode = true ;
+      $this->showModal = true;
+// dd($branch);
+
+      $this->current_employee = Employee::find($employee['id']);
+      $this->caption= $employee['caption'];
+      $this->name = $employee['name'];
+      
+$this->working_times = json_decode($employee['working_times'], true);
+     
+
+    }
 
 };

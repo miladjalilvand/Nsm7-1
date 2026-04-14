@@ -92,6 +92,49 @@
             </div> -->
             </form>
 
-    
     </flux:modal>
+    @foreach($branches->reverse() as $branch) 
+<div class="flex flex-col">
+    <div class="flex flex-col m-1 p-3">
+        <div>
+            <span>
+عنوان شعبه : {{$branch->caption}}
+            </span>
+        </div>
+        <div>
+            <span>
+                آدرس : {{$branch->address}}
+            </span>
+        </div>
+                <div>
+            <span>
+                شماره تماس : {{$branch->phone}}
+            </span>
+        </div>
+                <div>
+            <span>
+                موبایل : {{$branch->mobile}}
+            </span>
+        </div>
+                <div>
+            <span>
+                موقعیت مکانی : {{$branch->location}}
+            </span>
+        </div>
+                <div class="text-left">
+ <flux:modal.trigger name="branches">
+        <flux:button variant="primary"
+        wire:click="show_edit({{$branch}})" >
+         
+           
+                ویرایش
+            
+        </flux:button>
+    </flux:modal.trigger>
+        </div>
+
+    </div>
+</div>
+@endforeach
+    
 </div>

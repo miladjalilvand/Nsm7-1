@@ -20,6 +20,10 @@ use Livewire\Component;
 
     public $caption ,$phone , $mobile , $address , $location , $working_times ;
 
+    public $edit_mode =false;
+
+
+    public $current_branch ;
 
     // #[On('branch-created')]
     public function refresh(){
@@ -46,6 +50,8 @@ use Livewire\Component;
     public function store()
     {
         $user = Auth::user();
+
+       if(!$this->edit_mode){
                Branch::create([
             'caption'=> $this->caption , 
            'phone'=> $this->phone , 
@@ -56,14 +62,45 @@ use Livewire\Component;
           'panel_id' => panelID($user)
         ]);
 
-      $user = Auth::user();
-        $this->branches = $user->admin->panel->branches;
-        $this->showModal = false ; 
+
                 // $this->dispatch('branch-created');
         // $this->reset();
 
 
         // $this->dispatch('delete-user-button');
+
+      }else{
+               $this->current_branch->update([
+            'caption'=> $this->caption , 
+           'phone'=> $this->phone , 
+            'mobile'=>$this->mobile , 
+           'location'=> $this->location , 
+           'address'=> $this->address ,
+          'working_times'=>  $this->working_times, 
+          'panel_id' => panelID($user)
+        ]);
+      }
+            $user = Auth::user();
+        $this->branches = $user->admin->panel->branches;
+        $this->showModal = false ; 
+    }
+
+    public function show_edit($branch){
+      $this->edit_mode = true ;
+      $this->showModal = true;
+// dd($branch);
+
+$this->current_branch =Branch::find($branch['id']);
+
+      $this->caption= $branch['caption'];
+      $this->address = $branch['address'];
+      $this->phone = $branch['phone'];
+      $this->mobile = $branch['mobile'];
+      $this->location = $branch['location'];
+      $this->working_times = $branch['working_times'];
+
+      
+
     }
     
 };
