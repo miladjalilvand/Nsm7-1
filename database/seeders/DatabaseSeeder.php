@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class, 
             MenuTypeSeeder::class,
             MenuSeeder::class,
+            CustomerMenuSeeder::class
         ];
 
         foreach ($seeders as $seeder) { 
@@ -41,9 +42,10 @@ class DatabaseSeeder extends Seeder
         // User::destroy(1);
         $user = User::create(
             [
-                'name' => 'user' , 
-                'email' => 'user@email.com' , 
-                'password' => '123456789'
+                'name' => 'milad' , 
+                'email' => 'admin@email.com' , 
+                'password' => 'password' , 
+                'type' => 'admin'
             ]
         );
 

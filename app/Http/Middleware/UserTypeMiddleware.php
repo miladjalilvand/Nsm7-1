@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class BranchExist
+class UserTypeMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,11 @@ class BranchExist
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-     if(!Auth::user()->panel->branches->count()){
-        return redirect()->to('/branches/index');
-     }   
+        $user = Auth::user();
+        // dd($user);
+        if($user->type == 'admin'){
+            return redirect()->to('/');
+        }
         return $next($request);
     }
 }

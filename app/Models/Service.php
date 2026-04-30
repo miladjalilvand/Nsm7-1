@@ -22,4 +22,15 @@ class Service extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+
+    public function employees(){
+        return $this->belongsToMany(
+            Employee::class,
+            'employee_services' , 
+            'service_id' ,
+            'employee_id',
+
+        );
+    }
 }

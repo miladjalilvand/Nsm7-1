@@ -17,7 +17,9 @@ new class extends Component
  public  $branchesCount ; 
  public function mount()
 {
-    $this->menuTypes = MenuType::with('menus')->get();
+    $table_menu = Auth::user()->type == 'admin' ? 
+    'menus' : 'customer_menus' ;
+    $this->menuTypes = MenuType::with($table_menu)->get();
 
     $this->branchesCount = Branch::count();
 
@@ -29,13 +31,14 @@ new class extends Component
 
 <div>
 
-{{$show_menu ? 'true' : 'false'}}
+
 @foreach($menuTypes as $menuType)
     <span class=" font-semibold">
         {{ $menuType->caption }}
 </sapn>
 
 
+@if(Auth::user()->type == 'admin')
     @foreach($menuType->menus as $menu)
     @if($menu->slug == 'branches' || $branchesCount)
         <flux:sidebar.item
@@ -50,7 +53,23 @@ new class extends Component
         </flux:sidebar.item>
         @endif
     @endforeach
+    @else 
 
+      @foreach($menuType->customer_menus as $menu)
+
+        <flux:sidebar.item
+       
+            :href="route($menu->slug.'.index')"
+
+            :current="request()->is('/'.$menu->slug)"
+            wire:navigate
+            icon="{{$menu->icon}}"
+        >
+            {{ $menu->caption }}
+        </flux:sidebar.item>
+     
+    @endforeach
+ @endif
 @endforeach
 
 </div>

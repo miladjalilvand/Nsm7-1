@@ -2,7 +2,12 @@
 
     <livewire:branch_switcher />
 
-<livewire:component.create_button_section />
+
+        <flux:button wire:click="open_modal"
+
+        >
+            {{ __('جدید') }}
+        </flux:button>
 
 
 @foreach($employees as $item_employee)
@@ -72,7 +77,7 @@ wire:click="store_employe_service()"
 @endforeach
 
    <flux:modal name="employees" :show="$errors->isNotEmpty()" focusable class="max-w-lg"
-    wire:model="showModal"
+    wire:model="isopen"
    >
                 <form  
             class=""

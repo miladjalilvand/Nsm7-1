@@ -1,5 +1,9 @@
 <div>
-<livewire:component.create_button_section />
+    <flux:modal.trigger name="branches">
+        <flux:button variant="primary" x-data="" x-on:click.prevent="$dispatch('open-modal', 'branches')" data-test="delete-user-button">
+            {{ __('جدید')}}
+        </flux:button>
+    </flux:modal.trigger>
 {{$branches->count()}}
 
        <flux:modal name="branches" :show="$errors->isNotEmpty()" focusable class="max-w-lg"

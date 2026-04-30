@@ -15,9 +15,33 @@ use App\Livewire\Service\Create as service_create;
 use App\Livewire\Employee\Index as employee_index;
 use App\Livewire\Employee\Edit as employee_edit;
 use App\Livewire\Employee\Create as employee_create;
+use App\Livewire\Reserves\Index as reserves_index;
+use App\Livewire\Customers\Index as customers_index;
+use App\Livewire\Payments\Index as payments_index;
+
+
+
+use App\Livewire\WebsiteLiveWire\Index as website_index;
+
 
 use Illuminate\Support\Facades\Route;
 
+
+Route::middleware(['auth' , 'utm'])->group(function(){
+Route::get('/paymentsc', function () {
+    return view('welcome');
+})->name('paymentsc.index');
+Route::get('/new-reservec', function () {
+    return view('welcome');
+})->name('new-reservec.index');
+Route::get('/profile', function () {
+    return view('welcome');
+})->name('profile.index');
+Route::get('/reservesc', function () {
+    return view('welcome');
+})->name('reservesc.index');
+
+});
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -25,20 +49,20 @@ Route::view(uri: 'sample', view: 'sample')
     ->middleware(middleware: ['auth', 'verified'])
     ->name('sample');
 
-
-    Route::middleware( ['auth', 'verified'])->group(function (){
-    Route::prefix('reserves/')->name('reserves.')->
-    group(function(){
-            Route::get('index' , Index::class)->name('index');
-
-
-    });
-        Route::prefix('branches/')->name('branches.')->
+        Route::middleware( ['auth', 'verified' ])->prefix('branches/')->name('branches.')->
     group(function(){
             Route::get('index' , branch_index::class)->name('index');
             Route::get('create' , branch_create::class)->name('create');
             Route::get('edit/{branch}' , branch_edit::class)->name('edit');
     });
+    Route::middleware( ['auth', 'verified' , 'bre'])->group(function (){
+    Route::prefix('reserves/')->name('reserves.')->
+    group(function(){
+            Route::get('index' , reserves_index::class)->name('index');
+
+
+    });
+
         Route::prefix('categories/')->name('categories.')->
     group(function(){
             Route::get('index' , category_index::class)->name('index');
@@ -75,6 +99,13 @@ Route::view('dashboard', view: 'dashboard')
     //         Route::get('menu_type1/create', Create::class)
     // ->middleware(middleware: ['auth', 'verified'])
     // ->name('menu_type1.create');
+
+
+    //auth middleware for customers 
+
+            Route::get('new-reserve' , website_index::class)->name('new-reserve.index');
+            Route::get('customers' , customers_index::class)->name('customers.index');
+            Route::get('payments' , payments_index::class)->name('payments.index');
 
 
 require __DIR__.'/settings.php';

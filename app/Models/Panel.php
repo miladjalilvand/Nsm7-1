@@ -25,5 +25,8 @@ class Panel extends Model
     {
         return $this->hasMany(Admin::class);
     }
-    
+        public function user ()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

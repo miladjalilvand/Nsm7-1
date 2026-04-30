@@ -8,33 +8,43 @@ use Illuminate\Support\Facades\Auth;
 if(!function_exists('getPersianModuleCaptions'))
 {
     function getPersianModuleCaptions($slug) : string{
-        $persianCaption = match($slug)
+        return match($slug)
         {
             'branches' => 'شعبه ها',
             'categories' => 'دسته بندی ها',
             'services' => 'سرویس ها' , 
             'employees' => 'کارمندان',
-            'reserves' => 'نوبت ها'
+            'reserves' => 'نوبت ها',
+            'payments' => 'پرداخت ها ها' , 
+            'new-reserve' => 'نوبت جدید',
+            'customers' => ' مشتریان'
         };
 
-        return $persianCaption;
+        
     }
 
 }
 
 if(!function_exists('getPersianModuleCaptionButtons'))
 {
-     function getPersianModuleCaptionCreateButtons($slug) : string{
-        $persianCaption = match($slug)
-        {
-            'branches' => 'شعبه جدید',
-            'categories' => 'دسته بندی جدید',
-            'services' => 'سرویس جدید' , 
-            'employees' => 'کارمند جدید',
-            'reserves' => 'نوبت ها'
-        };
+     function getPersianModuleCaptionCreateButtons($slug) {
 
-        return $persianCaption;
+
+        switch(request()->segment(1)){
+            case 'branches' :return 'شعبه جدید';break;
+            case 'categories'  :return  'دسته بندی جدید';break;
+            case 'services' :return 'سرویس جدید';break;
+            case 'employees'  :return 'کارمند جدید';break;
+            case 'reserves'  :return 0;break;
+            case 'payments'  :return 0;break;
+            case 'new-reserve' :return 0;break;
+            case 'customers'  :return 0;break;
+            default :return 0;
+
+        }
+
+
+    
     }
 }
 
@@ -70,7 +80,7 @@ if(!function_exists('set_first_branch')){
 
 if(!function_exists('current_branch')){
 
-    function current_branch() :Branch {
+    function current_branch() :Branch|null {
         return session('current_branch')?? Auth::user()->admin->panel->branches->first();
         
     }

@@ -2,7 +2,12 @@
 
     <livewire:branch_switcher />
 
-    <livewire:component.create_button_section />
+
+        <flux:button wire:click="open_modal"
+
+        >
+            {{ __('جدید') }}
+        </flux:button>
 
 
 
@@ -16,7 +21,7 @@
 
 
        <flux:modal name="services" :show="$errors->isNotEmpty()" focusable class="max-w-lg"
-        wire:model="showModal"
+        wire:model="isopen"
        >
                    <form wire:submit="store" 
            

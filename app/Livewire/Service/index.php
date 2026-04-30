@@ -2,6 +2,7 @@
 namespace App\Livewire\Service;
 
 use App\Models\Service;
+use Flux\Flux;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -21,12 +22,14 @@ use Livewire\Component;
     public $branch_id;
 
 
-    public $showModal ;
+
 
     //
 
     public $edit_mode =false;
     public $current_service ;
+
+        public $isopen = false;
     
     #[On(['branch-switched'])]
     public function refresh(){
@@ -39,9 +42,20 @@ use Livewire\Component;
      
     
     }
+
+            public function open_modal()
+    {
+        
+              $this->edit_mode = false;
+
+
+      $this->isopen = true;
+
+    } 
     public function mount(){
-        $this->services = current_branch()->services;
-        $this->categories = current_branch()->categories;
+        $this->services = current_branch()->services()->get();
+        $this->categories = current_branch()->categories()->get();
+
         $this->branch_id = current_branch()->id;
 
     }
@@ -79,14 +93,15 @@ use Livewire\Component;
             $this->services = $branch->services()->orderBy('id', 'desc')->get();
     $this->categories = $branch->categories()->get();
     $this->branch_id = $branch->id;
-        $this->showModal = false ; 
+                Flux::modal('services')->close();  $this->isopen = false;
+
 
         // $this->dispatch('new-service');
     }
 
         public function show_edit($service){
       $this->edit_mode = true ;
-      $this->showModal = true;
+
 // dd($branch);
 
       $this->current_service = Service::find($service['id']);

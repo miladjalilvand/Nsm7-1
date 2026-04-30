@@ -18,17 +18,25 @@ class Branch extends Model
     ];
 
     public function services (){
-        return $this->hasMany(Service::class);
+        return $this->hasMany(\App\Models\Service::class);
     }
 
     public function categories (){
-        return $this->hasMany(Category::class);
+        return $this->hasMany(\App\Models\Category::class);
     }
     public function employees (){
-        return $this->hasMany(Employee::class);
+        return $this->hasMany(\App\Models\Employee::class);
     }
     public function reserves (){
-        return $this->hasMany(Reserve::class);
+        return $this->hasMany(\App\Models\Reserve::class);
+    }
+
+    public function customers (){
+        return $this->hasMany(\App\Models\Customer::class);
+    }
+
+    public function payments (){
+        return $this->hasMany(Payment::class);
     }
 
 }

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('branch_id');
             $table->foreignId('status_id');
             $table->foreignId('customer_id');
-            $table->date('date');
-            $table->time('time');
+            $table->timestamp('start_time');
+            $table->timestamp('end_time');
             $table->integer('total_cost');
             $table->integer('discount');
             $table->integer('total_time');

@@ -3,6 +3,7 @@ namespace App\Livewire\Employee;
 
 use App\Models\Employee;
 use App\Models\EmployeeService;
+use Flux\Flux;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -18,7 +19,7 @@ use Livewire\Component;
 
         public  $working_times =[];
 
-        public $showModal ;
+
 
         public $showModalWeekday ;
         public $endTime; 
@@ -39,16 +40,16 @@ use Livewire\Component;
         public $edit_mode = false; 
 
         public $current_employee ;
-        
+            public $isopen = false;
 
         #[On('branch-switched')]
         public function refresh(){
             $branch =  current_branch()->fresh();
 
             $this->employees = 
-        $branch->employees;
+        $branch->employees()->get();
 
-        $this->services = $branch->services;
+        $this->services = $branch->services()->get();
         $this->service_ids = $branch->services->pluck('id')->
         toArray()??[];
  
@@ -56,10 +57,10 @@ use Livewire\Component;
         }
     public function mount(){
         $this->employees = 
-        current_branch()->employees;
+        current_branch()->employees()->get();
 
-        $this->services = current_branch()->services;
-        $this->service_ids = current_branch()->services->pluck('id')->
+        $this->services = current_branch()->services()->get();
+        $this->service_ids = current_branch()->services()->pluck('id')->
         toArray()??[];
 
         // dd(current_branch()->services);
@@ -69,7 +70,14 @@ use Livewire\Component;
     {
         return view("livewire.employees.index");
     }
+        public function open_modal()
+    {
+              $this->edit_mode = false;
 
+
+      $this->isopen = true;
+
+    } 
     public function store(){
         $branch_id = current_branch()->id;
 
@@ -89,6 +97,8 @@ use Livewire\Component;
             'branch_id' => $branch_id 
             ]);
         }
+
+        Flux::modal('employees')->close();  $this->isopen = false;
 
         $this->refresh();
 
@@ -183,7 +193,7 @@ use Livewire\Component;
 
             public function show_edit($employee){
       $this->edit_mode = true ;
-      $this->showModal = true;
+    
 // dd($branch);
 
       $this->current_employee = Employee::find($employee['id']);

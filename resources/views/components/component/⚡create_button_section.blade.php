@@ -24,13 +24,13 @@ new class extends Component
 
 <div>
 
-
+@if( $persianCaptionButton )
     <flux:modal.trigger name="{{$segment}}">
         <flux:button variant="primary" x-data="" x-on:click.prevent="$dispatch('open-modal', $segment)" data-test="delete-user-button">
             {{ __($persianCaptionButton)}}
         </flux:button>
     </flux:modal.trigger>
+@endif
 
-   <!-- <flux:link :href="route($segment.'.'.'create')" wire:navigate>{{ __( $persianCaptionButton) }}</flux:link> -->
 
 </div>

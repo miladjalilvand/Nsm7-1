@@ -4,10 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class BranchExist
+class DepsdbMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +15,6 @@ class BranchExist
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-     if(!Auth::user()->panel->branches->count()){
-        return redirect()->to('/branches/index');
-     }   
         return $next($request);
     }
 }

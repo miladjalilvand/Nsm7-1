@@ -12,8 +12,8 @@ class Reserve extends Model
         'total_time' , 
         'discount' , 
         'total_cost' , 
-        'time' ,
-        'date' , 
+        'end_time' ,
+        'start_time' , 
         'customer_id' , 
         'branch_id' , 
         'status_id'

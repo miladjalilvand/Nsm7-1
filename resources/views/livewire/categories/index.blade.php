@@ -1,55 +1,70 @@
 <div>
+    {{-- کامپوننت سوئیچر شعبه --}}
     <livewire:branch_switcher />
 
-<livewire:component.create_button_section />
+    {{-- دکمه جدید دسته --}}
 
-{{$categories->count()}}
-   <flux:modal name="categories" :show="$errors->isNotEmpty()" focusable class="max-w-lg"
-    wire:model="showModal"
-   >
-                    <form wire:submit="store" 
-            class=""
-            >
-        <flux:input
-    label="عنوان"
-    placeholder="کپشن را وارد کنید"
-    type="text"
-    wire:model="caption"
-    :error="$errors->first('caption')"
-/>
+        <flux:button wire:click="open_modal"
+
+        >
+            {{ __('جدید') }}
+        </flux:button>
 
 
-                      
-                    <flux:button  type="submit" variant="filled">
-                    {{ __('ذخیره') }}
-                
+    {{-- تعداد دسته‌ها --}}
+    <div class="mt-4">
+        تعداد دسته‌ها: {{ $categories->count() }}
+    </div>
+
+    {{-- مودال افزودن/ویرایش دسته --}}
+    <flux:modal
+     wire:model="isopen" 
+    name="categories" focusable class="max-w-lg">
+        <form wire:submit.prevent="store" class="space-y-4 p-4">
+
+            <flux:input 
+                label="عنوان دسته"
+                placeholder="کپشن را وارد کنید"
+                type="text"
+                wire:model="caption"
+                :error="$errors->first('caption')"
+            />
+
+            <div class="flex justify-end space-x-2">
+                <flux:button 
+                    type="submit" 
+                    variant="filled"
+                >
+                    {{ $edit_mode ? 'ویرایش' : 'ذخیره' }}
                 </flux:button>
-             
+                                      
+
+
+                    
+
+
+            </div>
         </form>
     </flux:modal>
 
-    @foreach($categories as $category)
+    {{-- لیست دسته‌ها --}}
+    <div class="mt-6 space-y-3">
+        @foreach($categories->reverse() as $category)
+            <div class="border rounded-lg p-3 flex justify-between items-center">
+                <span>
+                    عنوان: {{ $category->caption }}
+                </span>
+    <flux:modal.trigger name="categories">
 
-                    <div class="flex flex-col">
-    <div class="flex flex-col m-1 p-3">
+                <flux:button 
+x-data="" x-on:click.prevent="$dispatch('open-modal', 'categories')"
+                    wire:click="openEdit({{ $category->id }})"
+                >
+                    ویرایش
+                </flux:button>
+                    </flux:modal.trigger>
 
-    <div>         <span>
-          عنوان:  {{$category->caption}}
-        </span><br/>
-        
-        <div class="text-left">
- <flux:modal.trigger name="categories">
-        <flux:button variant="primary"
-        wire:click="show_edit({{$category}})" >
-         
-           
-                ویرایش
-            
-        </flux:button>
-    </flux:modal.trigger>
-        </div>
-            </div>    </div>
-
+            </div>
         @endforeach
-
+    </div>
 </div>

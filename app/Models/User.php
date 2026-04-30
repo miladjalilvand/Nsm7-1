@@ -34,7 +34,7 @@ class User extends Authenticatable
         'password',
         'two_factor_secret',
         'two_factor_recovery_codes',
-        'remember_token',
+        'remember_token', 'type'
     ];
 
     /**
@@ -74,5 +74,9 @@ class User extends Authenticatable
             return true;
         }
         return false; 
+    }
+
+    public function panel(){
+        return $this->hasOne(Panel::class);
     }
 }

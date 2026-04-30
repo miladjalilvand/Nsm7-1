@@ -1,7 +1,9 @@
 <div>
     <h1>عنوان</h1>
     <p>متن</p>
-    <flux:link as="button"  href="{{route('menu_type1.create')}}" wire:navigate>
+    <flux:link as="button" 
+     wire:navigate
+     >
         + faq
     </flux:link>
     <div x-data="{ open: false }" class="border rounded-lg">
