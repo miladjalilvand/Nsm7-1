@@ -12,4 +12,9 @@ class Category extends Model
         'branch_id' ,
         'caption' , 'is_active'
     ];
+
+
+    public function services(){
+        return $this->hasMany(Service::class);
+    }
 }

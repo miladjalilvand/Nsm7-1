@@ -4,14 +4,15 @@
             {{ __('جدید')}}
         </flux:button>
     </flux:modal.trigger>
-{{$branches->count()}}
+
+<span class="text-gray-900 dark:text-gray-100">{{$branches->count()}}</span>
 
        <flux:modal name="branches" :show="$errors->isNotEmpty()" focusable class="max-w-lg"
         wire:model="showModal"
        
        >
                    <form wire:submit="store" 
-            class=""
+            class="space-y-4 p-4 bg-white dark:bg-gray-800 rounded-lg"
             >
 {{-- ... --}}
 {{-- فرض می‌کنیم این کد داخل یک تگ 
@@ -99,33 +100,33 @@
     </flux:modal>
     @foreach($branches->reverse() as $branch) 
 <div class="flex flex-col">
-    <div class="flex flex-col m-1 p-3">
+    <div class="flex flex-col m-1 p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
         <div>
-            <span>
+            <span class="text-gray-900 dark:text-gray-100">
 عنوان شعبه : {{$branch->caption}}
             </span>
         </div>
         <div>
-            <span>
+            <span class="text-gray-700 dark:text-gray-300">
                 آدرس : {{$branch->address}}
             </span>
         </div>
                 <div>
-            <span>
+            <span class="text-gray-700 dark:text-gray-300">
                 شماره تماس : {{$branch->phone}}
             </span>
         </div>
                 <div>
-            <span>
+            <span class="text-gray-700 dark:text-gray-300">
                 موبایل : {{$branch->mobile}}
             </span>
         </div>
                 <div>
-            <span>
+            <span class="text-gray-600 dark:text-gray-400">
                 موقعیت مکانی : {{$branch->location}}
             </span>
         </div>
-                <div class="text-left">
+                <div class="text-left mt-2">
  <flux:modal.trigger name="branches">
         <flux:button variant="primary"
         wire:click="show_edit({{$branch}})" >

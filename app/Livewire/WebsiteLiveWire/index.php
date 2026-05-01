@@ -17,6 +17,7 @@ use Livewire\Component;
     public $service_selected ; 
     public $employee_service_list_selected ; 
     public $branch_services ; 
+    public $branch_categories ; 
     public $branch_services_employees ; 
 
     public $show_dialog_to_new_reserve = false ; 
@@ -40,6 +41,7 @@ use Livewire\Component;
        $this->switchState(1);
        $this->branch_selected = $branch;
        $this->branch_services = Branch::find($branch['id'])->services;
+       $this->branch_categories = Branch::find($branch['id'])->categories;
 
     }
     public function select_to_new_reserve(){

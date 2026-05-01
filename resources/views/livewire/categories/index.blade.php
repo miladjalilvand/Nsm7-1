@@ -12,7 +12,7 @@
 
 
     {{-- تعداد دسته‌ها --}}
-    <div class="mt-4">
+    <div class="mt-4 text-gray-900 dark:text-gray-100">
         تعداد دسته‌ها: {{ $categories->count() }}
     </div>
 
@@ -30,7 +30,7 @@
                 :error="$errors->first('caption')"
             />
 
-            <div class="flex justify-end space-x-2">
+            <div class="flex justify-end space-x-2 rtl:space-x-reverse">
                 <flux:button 
                     type="submit" 
                     variant="filled"
@@ -50,8 +50,8 @@
     {{-- لیست دسته‌ها --}}
     <div class="mt-6 space-y-3">
         @foreach($categories->reverse() as $category)
-            <div class="border rounded-lg p-3 flex justify-between items-center">
-                <span>
+            <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-3 flex justify-between items-center bg-white dark:bg-gray-800">
+                <span class="text-gray-900 dark:text-gray-100">
                     عنوان: {{ $category->caption }}
                 </span>
     <flux:modal.trigger name="categories">

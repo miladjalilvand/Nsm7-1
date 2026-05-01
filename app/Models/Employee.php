@@ -6,25 +6,34 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    //
     protected $table = 'employees';
-    protected $fillable  = [
+    protected $fillable = [
         'working_times',
-        'caption' , 
-        'name' , 
-        'branch_id' , 'is_active'
+        'caption', 
+        'name', 
+        'branch_id', 
+        'is_active'
     ];
 
-
-    public function employee_services(){
+    // Fixed: Use snake_case for method name (convention)
+    public function employeeServices()
+    {
         return $this->hasMany(EmployeeService::class);
     }
 
-    public function services(){
-    return $this->belongsToMany(
-        Service::class,
-        'employee_services',
-        'employee_id',  // FK در pivot که به Employee اشاره می‌کند
-        'service_id'    // FK در pivot که به Service اشاره می‌کند
-    );    }
+    // Fixed: Removed unnecessary parameters (Laravel auto-detects)
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'employee_services')
+                    ->withPivot('is_active')  // Include pivot column
+                    ->withTimestamps();        // If you have timestamps in pivot
+    }
+    
+    // Optional: Get only active services
+    public function activeServices()
+    {
+        return $this->belongsToMany(Service::class, 'employee_services')
+                    ->wherePivot('is_active', true)
+                    ->withPivot('is_active');
+    }
 }
