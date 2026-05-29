@@ -53,6 +53,14 @@ use Illuminate\Support\Carbon;
         }
 
          $this->selected_days = $list_days;
+
+        
+    }
+
+    public function select_date ($date){
+
+        $this->selected_date = $date;
+
     }
 
 
@@ -90,6 +98,8 @@ use Illuminate\Support\Carbon;
         $this->show_days();
 
 
+
+        $this->select_date($this->selected_days[6]);
 
         $this->branches = Branch::all();
         $this->current_branch_id = current_branch()->id;

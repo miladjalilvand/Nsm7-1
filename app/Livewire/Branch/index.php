@@ -25,6 +25,9 @@ use Livewire\Component;
 
     public $current_branch ;
 
+
+
+
     // #[On('branch-created')]
     public function refresh(){
         //   dd('refresh called');
@@ -36,8 +39,11 @@ use Livewire\Component;
 
     public function mount()
     {
+
         $user = Auth::user();
         $this->branches = $user->admin->panel->branches;
+
+
     }
 
 
@@ -46,6 +52,14 @@ use Livewire\Component;
     {
         return view("livewire.branches.index");
     }
+
+    public function reload_need_func(){
+      if( in_array($this->branches->count() ,[0 , 1 ])){
+          return redirect()->route('dashboard');
+      
+   
+    }
+  }
 
     public function store()
     {
@@ -82,6 +96,7 @@ use Livewire\Component;
       }
             $user = Auth::user();
         $this->branches = $user->admin->panel->branches;
+       $this->reload_need_func();
         $this->showModal = false ; 
     }
 

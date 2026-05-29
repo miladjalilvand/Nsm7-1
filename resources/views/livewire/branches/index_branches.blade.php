@@ -22,6 +22,19 @@
                 <div class="text-gray-700 dark:text-gray-300 block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 transform hover:translate-x-1">
                     <div class="font-medium">
                         {{ $branch_service_item->caption }}
+                         <span class="text-gray-700 dark:text-gray-300">
+    
+        </span><br/>
+         <span class="text-gray-700 dark:text-gray-300">
+          زمان:  {{$branch_service_item->time}}
+        </span><br/>
+         <span class="text-gray-700 dark:text-gray-300">
+          مبلغ:  {{$branch_service_item->cost}}
+        </span><br/>
+
+         <span class="text-gray-600 dark:text-gray-400">
+          توضیحات:  {{$branch_service_item->description}}
+        </span><br/>
                     </div>
                     
                     @if($branch_service_item->employees->count() > 0)
